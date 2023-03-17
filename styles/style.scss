@@ -21,16 +21,20 @@ $padding50:50px 0; //변수는 속성은 안넣고 값만 넣는 것.
     justify-content: space-between;
     align-items: center;
 }
+@mixin flex-column-between {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+}
 // 실행
 #header_bg {
     background-color: $bg1-light;
     header {
         @include layout;
         @include flex-row-between;
-        background: aqua; height: 70px;
+        height: 70px;
         h1{a{img{}}}
         nav {
-            background: yellow;
             a{margin-left: 16px;}
             a:first-child {margin: 0;} //before 안줘야 되네.. 왜지? 헉!!! 
             //아 ! 첫번째 자식한테는 마진이 애초에 안들어가는구나!!!오호호 깨달았다.!유레카!
@@ -51,7 +55,6 @@ $padding50:50px 0; //변수는 속성은 안넣고 값만 넣는 것.
     .prev {top:45%; left:20px;}
     .next {top:45%; right:20px;}
     .pagenation {
-        background:brown;
         position: absolute; bottom: 50px; left: 0;
         width: 100%; text-align: center;
         a {
@@ -66,7 +69,7 @@ $padding50:50px 0; //변수는 속성은 안넣고 값만 넣는 것.
         a:last-child {margin: 0;}
     }
 }//e:slide_wrap
-#gallery_wrap {background: lime;
+#gallery_wrap {
     @include flex-row-between;
     @include layout;
     padding:$padding50;
@@ -77,7 +80,7 @@ $padding50:50px 0; //변수는 속성은 안넣고 값만 넣는 것.
     .g5 {width:200px; height: 200px;}
 }//e:gallery_wrap
 #bnr_wrap {
-    background: $font-color-bk;
+    background: $bg3-dark;
     text-align: center;
     padding: $padding50;
     span {
@@ -87,19 +90,40 @@ $padding50:50px 0; //변수는 속성은 안넣고 값만 넣는 것.
 #card_wrap {
     @include layout;
     @include flex-row-between;
-    padding: 40px 0;
+    padding: $padding50;
     .card {
-        width: 260px;
         background: $bg1-light;
-        border: 1px solid $bg1-light;
+        padding: 30px 20px; width:23.5%; //(100-6)/4
+        * {padding-bottom: 20px; line-height: 1.3;}
         .photo {
-            width: 200px; height: 200px;
-            margin: 0 auto;
-            img {
-                width: 100%;
-            }
+            img {width: 100%;}
         }
-        h2 {padding: 20px;}
-        p {padding: 20px;}
+        h2 {}
+        p:last-child {padding: 0;}
     }
 }//e:card_wrap
+#qa_wrap {
+    @include layout; padding: $padding50;
+    h2 {font-size: 1.375rem; margin-bottom: 20px}
+    #qaFrm {
+        fieldset {
+            @include flex-column-between;
+            * {
+                margin-bottom: 16px;
+                background: $bg1-light;
+                padding:10px;
+                border: none;
+            }
+            input[name$=id] {}
+            input[name$=number] {}
+            #user_qa {height: 200px;}
+            #qa_btn {background: $bg3-dark; color: $font-color-wh; margin: 0;}
+        }
+    }
+}//e:qa_wrap
+footer {
+    background: $bg3-dark;
+    padding: $padding50;
+    text-align: center;
+    color: $font-color-wh;
+}
